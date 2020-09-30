@@ -1,5 +1,6 @@
 import React from 'react'
 import MenuItem from '../menu-item/menu-item.component';
+import './directory.styles.scss';
 
 //this will be a class component because it stores the state
 //value of the menu items that we want to pass and create the
@@ -13,7 +14,7 @@ class Directory extends React.Component {
                   title: 'smartphones',
                   imageUrl: 'https://colorlib.com/wp/wp-content/uploads/sites/2/iphone-11-mockups.jpg',
                   id: 1,
-                  linkUrl: 'shop/smartphones'
+                  linkUrl: 'smartphones'
                 },
                 {
                   title: 'hardware',
@@ -48,8 +49,8 @@ class Directory extends React.Component {
         return (
             <div className = 'directory-menu'>
                 {
-                    this.state.sections.map(({title, imageUrl, id, size}) => (
-                        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>
+                    this.state.sections.map(({ id, ...otherSectionProps }) => (
+                        <MenuItem key={id} {...otherSectionProps} />
                     ))
                 }
             </div>

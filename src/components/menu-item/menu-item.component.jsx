@@ -1,8 +1,11 @@
 import React from 'react';
 import './menu-item.styles.scss';
+import { withRouter } from 'react-router-dom'; //higher order component
+// a function that takes a comp as an arg and returns a modified comp
 
-const MenuItem = ({ title, imageUrl, size }) => (
-    <div className = {`${size} menu-item`}>
+const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
+    <div className = {`${size} menu-item`}
+        onClick={() => history.push(`${match.url}${linkUrl}`)}>
         <div className = 'background-image' style={{
             backgroundImage: `url(${imageUrl})`
             }}>
@@ -14,4 +17,5 @@ const MenuItem = ({ title, imageUrl, size }) => (
     </div>
 )
 
-export default MenuItem;
+export default withRouter(MenuItem);
+//withrouter will return a superpowered menu item comp with access to history
